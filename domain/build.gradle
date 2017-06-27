@@ -30,3 +30,17 @@ compileTestKotlin {
     jvmTarget = "1.8"
   }
 }
+
+dependencies {
+  def appDependencies = rootProject.ext.appDependencies
+  def testDependencies = rootProject.ext.testDependencies
+
+  implementation appDependencies.dagger
+  implementation appDependencies.rxJava
+
+  testImplementation testDependencies.junit
+  testImplementation testDependencies.mockito
+
+  compileOnly appDependencies.daggerCompiler
+  compileOnly appDependencies.javaxAnnotation
+}
