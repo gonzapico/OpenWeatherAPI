@@ -1,4 +1,4 @@
-package xyz.gonzapico.domain.repository
+package xyz.gonzapico.domain
 
 /**
  * Created by gfernandez on 6/27/17.
