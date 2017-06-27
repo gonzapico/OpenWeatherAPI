@@ -5,8 +5,8 @@ ext {
   // Libraries
   daggerVersion = '2.8'
   butterKnifeVersion = '8.5.1'
-  rxJavaVersion = '1.1.5'
-  rxAndroidVersion = '1.2.0'
+  rxJavaVersion = '2.0.5'
+  rxAndroidVersion = '2.0.1'
   javaxAnnotationVersion = '1.0'
   gsonVersion = '2.3'
   retrofitVersion = '2.2.0'
@@ -33,8 +33,8 @@ ext {
                      butterKnifeCompiler : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
                      recyclerView        : "com.android.support:recyclerview-v7:${supportVersion}",
                      design              : "com.android.support:design:${supportVersion}",
-                     rxJava              : "io.reactivex:rxjava:${rxJavaVersion}",
-                     rxAndroid           : "io.reactivex:rxandroid:${rxAndroidVersion}",
+                     rxJava              : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+                     rxAndroid           : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
                      androidAnnotations  : "com.android.support:support-annotations:${supportVersion}",
                      javaxAnnotation     : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
                      gson                : "com.google.code.gson:gson:${gsonVersion}",
