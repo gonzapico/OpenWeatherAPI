@@ -70,8 +70,9 @@ gen-external-apklibs
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
-.idea/modules.xml
 .idea/misc.xml
+.idea/gradle.xml
+.idea/modules.xml
 .idea/sonarlint
 .idea/sonarlint/
 .idea/kotlinc.xml
