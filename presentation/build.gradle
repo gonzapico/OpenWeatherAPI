@@ -1,21 +1,47 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "25.0.3"
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
+
   defaultConfig {
-    applicationId "xyz.gonzapico.holvitt"
-    minSdkVersion 15
-    targetSdkVersion 25
-    versionCode 1
-    versionName "1.0"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    applicationId rootProject.ext.androidApplicationId
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode rootProject.ext.versionCode
+    versionName rootProject.ext.versionName
+    testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+
+    buildConfigField "String", "API_URL", "\"http://jsonplaceholder.typicode.com/\""
   }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  packagingOptions {
+    exclude 'LICENSE.txt'
+    exclude 'META-INF/DEPENDENCIES'
+    exclude 'META-INF/ASL2.0'
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/services/javax.annotation.processing.Processor'
+  }
+
+  lintOptions {
+    quiet true
+    abortOnError false
+    ignoreWarnings true
+    disable 'InvalidPackage'
+    disable 'OldTargetApi'
+  }
+
   buildTypes {
-    release {
-      minifyEnabled false
+    debug {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
@@ -23,11 +49,19 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-    exclude group: 'com.android.support', module: 'support-annotations'
-  })
+
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-  implementation 'com.android.support:appcompat-v7:25.4.0'
-  testImplementation 'junit:junit:4.12'
-  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+  def appDependencies = rootProject.ext.appDependencies
+  def testDependencies = rootProject.ext.testDependencies
+
+  implementation appDependencies.constraintLayout
+  implementation appDependencies.supportAppCompat
+  androidTestImplementation(testDependencies.espresso) {
+    exclude module: "support-annotations"
+    exclude module: "support-v4"
+    exclude module: "design"
+    exclude module: "recyclerview-v7"
+  }
+  testImplementation testDependencies.junit
 }
