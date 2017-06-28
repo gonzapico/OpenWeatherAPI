@@ -15,7 +15,7 @@ android {
     versionName rootProject.ext.versionName
     testInstrumentationRunner rootProject.ext.testInstrumentationRunner
 
-    buildConfigField "String", "API_URL", "\"http://jsonplaceholder.typicode.com/\""
+    buildConfigField "String", "API_URL", "\"http://api.openweathermap.org/data/2.5/weather\""
   }
 
   compileOptions {
@@ -63,5 +63,6 @@ dependencies {
     exclude module: "design"
     exclude module: "recyclerview-v7"
   }
+  implementation project(':domain')
   testImplementation testDependencies.junit
 }
