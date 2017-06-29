@@ -40,7 +40,7 @@ ext {
                      gson                : "com.google.code.gson:gson:${gsonVersion}",
                      retrofit            : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
                      retrofitGson        : "com.squareup.retrofit2:converter-gson:${retrofitGsonVersion}",
-                     retrofitRxAdapter   : "com.squareup.retrofit2:adapter-rxjava:${retrofitRxAdapterVersion}",
+                     retrofitRxAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitRxAdapterVersion}",
                      fresco              : "com.facebook.fresco:fresco:${frescoVersion}",
                      leakCanary          : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
                      fragmentArgs        : "com.hannesdorfmann.fragmentargs:annotation:${fragmentArgsVersion}",
