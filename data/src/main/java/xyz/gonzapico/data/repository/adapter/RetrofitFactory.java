@@ -21,45 +21,37 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Simple implementation of a RestFactory class based on Retrofit 2
  */
-@Singleton
-public class RetrofitFactory implements RestFactory {
+@Singleton public class RetrofitFactory implements RestFactory {
 
-    private static GsonBuilder gsonBuilder = new GsonBuilder();
+  private static GsonBuilder gsonBuilder = new GsonBuilder();
 
-    private String apiUrl;
+  private String apiUrl;
 
-    @Inject
-    public RetrofitFactory() {}
+  @Inject public RetrofitFactory() {
+  }
 
-    @Override
-    public <S> S create(Class<S> service) {
-        return createBuilder()
-                .baseUrl(this.apiUrl)
-                .client(getClient())
-                .build()
-                .create(service);
-    }
+  @Override public <S> S create(Class<S> service) {
+    return createBuilder().baseUrl(this.apiUrl).client(getClient()).build().create(service);
+  }
 
-    @Override
-    public OkHttpClient getClient() {
-        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
-        return clientBuilder.build();
-    }
+  @Override public OkHttpClient getClient() {
+    OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+    return clientBuilder.build();
+  }
 
-    private Retrofit.Builder createBuilder() {
-        return new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
-    }
+  private Retrofit.Builder createBuilder() {
+    return new Retrofit.Builder().addConverterFactory(
+        GsonConverterFactory.create(gsonBuilder.create()))
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+  }
 
-    @Override
-    public void setBaseUrl(String apiUrl) {
-        this.apiUrl = apiUrl;
-    }
+  @Override public void setBaseUrl(String apiUrl) {
+    this.apiUrl = apiUrl;
+  }
 }
