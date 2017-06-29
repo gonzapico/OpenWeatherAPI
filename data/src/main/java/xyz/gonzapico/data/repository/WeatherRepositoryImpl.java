@@ -28,6 +28,6 @@ import static xyz.gonzapico.data.cloud.WeatherServiceKt.APPID;
   @NotNull @Override
   public Observable<OpenWeatherAPIResponse> getWeatherInfoOf(@NotNull String city) {
     this.restAPI.setBaseUrl(urlAPI); // Ability to change the API Url at any time.
-    return this.restAPI.create(WeatherService.class).getWeatherInfoOf(city, APPID).toObservable();
+    return this.restAPI.create(WeatherService.class).getWeatherInfoOf(city, APPID);
   }
 }
