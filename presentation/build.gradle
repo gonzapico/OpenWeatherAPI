@@ -15,7 +15,7 @@ android {
     versionName rootProject.ext.versionName
     testInstrumentationRunner rootProject.ext.testInstrumentationRunner
 
-    buildConfigField "String", "API_URL", "\"http://api.openweathermap.org/data/2.5/weather\""
+    buildConfigField "String", "API_URL", "\"http://api.openweathermap.org/data/2.5/weather/\""
   }
 
   compileOptions {
@@ -47,6 +47,10 @@ android {
   }
 }
 
+kapt {
+  generateStubs = true
+}
+
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -55,14 +59,34 @@ dependencies {
   def appDependencies = rootProject.ext.appDependencies
   def testDependencies = rootProject.ext.testDependencies
 
-  implementation appDependencies.constraintLayout
-  implementation appDependencies.supportAppCompat
+  implementation(
+      appDependencies.butterKnife,
+      appDependencies.recyclerView,
+      appDependencies.rxJava,
+      appDependencies.rxAndroid,
+      appDependencies.fresco,
+      appDependencies.design,
+      appDependencies.leakCanary,
+      appDependencies.fragmentArgs,
+      appDependencies.constraintLayout,
+      appDependencies.supportAppCompat,
+
+      project(':domain'),
+      project(':data'),)
+
+  testImplementation(testDependencies.junit)
+
   androidTestImplementation(testDependencies.espresso) {
     exclude module: "support-annotations"
     exclude module: "support-v4"
     exclude module: "design"
     exclude module: "recyclerview-v7"
   }
-  implementation project(':domain')
-  testImplementation testDependencies.junit
+
+  annotationProcessor appDependencies.fragmentArgsCompiler
+  annotationProcessor appDependencies.butterKnifeCompiler
+  implementation 'com.android.support:support-v4:25.4.0'
+
+  kapt 'com.google.dagger:dagger-compiler:2.11'
+  implementation 'com.google.dagger:dagger:2.11'
 }

@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">HolviTT</string>
+  <string name="city_label">Ciudad ---> </string>
+  <string name="temperature_label">Temperatura : </string>
 </resources>

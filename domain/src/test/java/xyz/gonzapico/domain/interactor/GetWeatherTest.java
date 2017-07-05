@@ -34,7 +34,7 @@ public class GetWeatherTest {
 
   @Test
   public void testGetWeatherObservableCase(){
-    getWeatherUseCase.buildUseCaseObservable(GetWeather.WeatherParams.forCity(FAKE_CITY));
+    getWeatherUseCase.buildUseCaseObservable(GetWeather.WeatherParams.Companion.forCity(FAKE_CITY));
 
     verify(mockWeatherRepository).getWeatherInfoOf(FAKE_CITY);
     verifyNoMoreInteractions(mockWeatherRepository);

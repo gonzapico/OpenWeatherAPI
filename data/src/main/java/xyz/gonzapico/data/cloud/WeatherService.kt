@@ -9,7 +9,7 @@ import xyz.gonzapico.domain.OpenWeatherAPIResponse
 /**
  * Created by gfernandez on 6/28/17.
  */
-const val WEATHER_PATH = "weather"
+const val WEATHER_PATH = "weather/"
 const val APPID = "11aea0ba906f81c3c865ac0f6d108428"
 const val HELSINKI = "Helsinki"
 
