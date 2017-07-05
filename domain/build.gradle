@@ -37,6 +37,7 @@ dependencies {
 
   implementation appDependencies.dagger
   implementation appDependencies.rxJava
+  implementation appDependencies.arrow
 
   testImplementation testDependencies.junit
   testImplementation testDependencies.mockito

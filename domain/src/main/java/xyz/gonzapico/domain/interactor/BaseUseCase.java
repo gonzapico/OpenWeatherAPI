@@ -1,6 +1,6 @@
 package xyz.gonzapico.domain.interactor;
 
-import com.google.common.base.Preconditions;
+import com.fernandocejas.arrow.checks.Preconditions;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
