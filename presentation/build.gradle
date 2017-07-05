@@ -82,6 +82,10 @@ dependencies {
     exclude module: "design"
     exclude module: "recyclerview-v7"
   }
+  androidTestCompile 'com.android.support.test:runner:0.5'
+  androidTestCompile 'com.android.support.test:rules:0.5'
+  androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+  androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
 
   annotationProcessor appDependencies.fragmentArgsCompiler
   annotationProcessor appDependencies.butterKnifeCompiler
