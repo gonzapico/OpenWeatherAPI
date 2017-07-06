@@ -3,4 +3,15 @@
   <string name="city_label">Ciudad ---> </string>
   <string name="temperature_label">Temperatura : </string>
   <string name="helsinki">Helsinki</string>
+  <string name="search_title">Buscar</string>
+  <string name="search_hint">Ciudad..</string>
+
+  <string-array name="cities_to_search">
+    <item>Helsinki</item>
+    <item>Madrid</item>
+    <item>London</item>
+    <item>Budapest</item>
+  </string-array>
+
+  <string name="city_not_found">Ciudad no encontrada</string>
 </resources>

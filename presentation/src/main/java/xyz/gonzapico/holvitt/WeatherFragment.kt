@@ -1,13 +1,15 @@
 package xyz.gonzapico.holvitt
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_weather.*
+import xyz.gonzapico.data.cloud.CITY
 import xyz.gonzapico.data.cloud.HELSINKI
-import xyz.gonzapico.holvitt.di.components.ApplicationComponent
 import xyz.gonzapico.holvitt.di.components.DaggerFragmentComponent
 import xyz.gonzapico.holvitt.di.components.FragmentComponent
 import javax.inject.Inject
@@ -27,18 +29,26 @@ class WeatherFragment : Fragment(), WeatherView {
         .builder().applicationComponent(activity.app.appComponent).build()
   }
 
+  var cityToSearch: String = HELSINKI
+  lateinit var globalView : View
+
   @Inject
   lateinit var mWeatherPresenter: WeatherPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    val cityArg = arguments.getString(CITY)
+    if (!TextUtils.isEmpty(cityArg))
+      cityToSearch = cityArg
   }
 
   override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
       savedInstanceState: Bundle?): View? {
     // Inflate the layout for this fragment
     fragmentComponent.inject(this)
-    return inflater!!.inflate(R.layout.fragment_weather, container, false)
+    globalView = inflater!!.inflate(R.layout.fragment_weather, container, false)
+    return globalView
   }
 
   override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -48,7 +58,7 @@ class WeatherFragment : Fragment(), WeatherView {
 
   override fun onResume() {
     super.onResume()
-    mWeatherPresenter.getWeatherFrom(HELSINKI)
+    mWeatherPresenter.getWeatherFrom(cityToSearch)
   }
 
   companion object {
@@ -59,8 +69,11 @@ class WeatherFragment : Fragment(), WeatherView {
      *
      * @return A new instance of fragment WeatherFragment.
      */
-    fun newInstance(): WeatherFragment {
+    fun newInstance(city: String): WeatherFragment {
       val fragment = WeatherFragment()
+      val bundle: Bundle = Bundle()
+      bundle.putString(CITY, city)
+      fragment.arguments = bundle
       return fragment
     }
   }
@@ -71,5 +84,23 @@ class WeatherFragment : Fragment(), WeatherView {
 
   override fun showTemperature(degrees: String) {
     tvTemperature.setText(degrees)
+  }
+
+  override fun showLoading() {
+    llLoading.visibility = View.VISIBLE
+  }
+
+  override fun hideLoading() {
+    llLoading.visibility = View.GONE
+  }
+
+  override fun showError(message: String) {
+    Snackbar.make(globalView, resources.getString(R.string.city_not_found),
+        Snackbar.LENGTH_SHORT).show()
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    mWeatherPresenter.onDetach()
   }
 }// Required empty public constructor

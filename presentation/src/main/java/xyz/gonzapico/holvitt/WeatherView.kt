@@ -8,4 +8,10 @@ interface WeatherView {
   fun showTemperature(degrees : String)
 
   fun showCity(cityName : String)
+
+  fun showLoading()
+
+  fun hideLoading()
+
+  fun showError(message : String)
 }

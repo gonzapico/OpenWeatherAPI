@@ -12,6 +12,7 @@ import xyz.gonzapico.domain.OpenWeatherAPIResponse
 const val WEATHER_PATH = "weather/"
 const val APPID = "11aea0ba906f81c3c865ac0f6d108428"
 const val HELSINKI = "Helsinki"
+const val CITY = "city"
 
 interface WeatherService {
   // http://api.openweathermap.org/data/2.5/weather?q=Helsinki&APPID=11aea0ba906f81c3c865ac0f6d108428
