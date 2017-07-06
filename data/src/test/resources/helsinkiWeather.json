@@ -1,0 +1,42 @@
+{
+  "coord": {
+    "lon": 24.94,
+    "lat": 60.17
+  },
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 286.15,
+    "pressure": 1011,
+    "humidity": 54,
+    "temp_min": 286.15,
+    "temp_max": 286.15
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 2.6,
+    "deg": 220
+  },
+  "clouds": {
+    "all": 0
+  },
+  "dt": 1498681200,
+  "sys": {
+    "type": 1,
+    "id": 5019,
+    "message": 0.0273,
+    "country": "FI",
+    "sunrise": 1498611508,
+    "sunset": 1498679303
+  },
+  "id": 658225,
+  "name": "Helsinki",
+  "cod": 200
+}
